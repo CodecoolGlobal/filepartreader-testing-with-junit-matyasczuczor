@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,7 +11,7 @@ class FilePartReaderTest {
     @Test
     public void testFromLineThrowsException() {
         FilePartReader filePartReader = new FilePartReader();
-        assertThrows(IllegalArgumentException.class, () -> filePartReader.setup("lorepimpsum.txt", -1, 22));
+        assertThrows(IllegalArgumentException.class, () -> filePartReader.setup("lorepimpsum.txt",  0, 22));
     }
 
     @Test
@@ -21,9 +23,16 @@ class FilePartReaderTest {
     @Test
     public void testReaderThrowsExeption() {
         FilePartReader filePartReader = new FilePartReader();
-        filePartReader.setup("src/lloremipsum.txt", 0, 22);
+        filePartReader.setup("src/lloremipsum.txt", 1, 22);
         assertThrows(IOException.class, filePartReader::read);
     }
 
-
+    @Test
+    public void testWordsAlphabetically() {
+        FilePartReader filePartReader = new FilePartReader();
+        filePartReader.setup("src/loremipsumshort.txt", 1, 2);
+        FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
+        List expected = Arrays.asList("amet.", "dolor", "ipsum", "Lorem", "sit");
+        assertEquals(expected, fileWordAnalyzer.getWordsOrderedAlphabetically());
+    }
 }
