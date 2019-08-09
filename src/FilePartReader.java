@@ -8,10 +8,7 @@ public class FilePartReader {
     private Integer fromLine;
     private Integer toLine;
 
-    public FilePartReader(String filePath, Integer fromLine, Integer toLine) {
-        filePath = null;
-        fromLine = null;
-        toLine = null;
+    public FilePartReader() {
     }
 
     public void setup(String filePath, Integer fromLine, Integer toLine) {
@@ -22,7 +19,7 @@ public class FilePartReader {
     }
 
     public String read() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("loremipsum.txt"));
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
         try {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
@@ -38,11 +35,15 @@ public class FilePartReader {
         }
     }
 
-    public String readLines() throws IOException {
-        String[] file = read().split("\n");
+    public String readLines() {
         StringBuilder lines = new StringBuilder();
-        for (int i = fromLine - 1; i < toLine; i++) {
-            lines.append(file[i]);
+        try {
+            String[] file = read().split("\n");
+            for (int i = fromLine - 1; i < toLine; i++) {
+                lines.append(file[i]);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return lines.toString();
     }
