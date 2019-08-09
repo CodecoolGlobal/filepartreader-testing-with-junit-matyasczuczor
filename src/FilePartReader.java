@@ -48,15 +48,4 @@ public class FilePartReader {
         return lines.toString();
     }
 
-    public String getFilePath() {
-        return filePath;
-    }
-
-    public Integer getFromLine() {
-        return fromLine;
-    }
-
-    public Integer getToLine() {
-        return toLine;
-    }
 }
