@@ -35,4 +35,13 @@ class FilePartReaderTest {
         List expected = Arrays.asList("amet.", "dolor", "ipsum", "Lorem", "sit");
         assertEquals(expected, fileWordAnalyzer.getWordsOrderedAlphabetically());
     }
+
+    @Test
+    public void testWordsContainingSubstring() {
+        FilePartReader filePartReader = new FilePartReader();
+        filePartReader.setup("src/loremipsumshort.txt", 1, 2);
+        FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
+        List expected = Arrays.asList("Lorem", "dolor");
+        assertEquals(expected, fileWordAnalyzer.getWordsContainingSubstring("or"));
+    }
 }
