@@ -12,7 +12,7 @@ public class FilePartReader {
     }
 
     public void setup(String filePath, Integer fromLine, Integer toLine) {
-        if (toLine < fromLine || fromLine < 0) throw new IllegalArgumentException("not valid values");
+        if (toLine < fromLine || fromLine < 1) throw new IllegalArgumentException("not valid values");
         this.filePath = filePath;
         this.fromLine = fromLine;
         this.toLine = toLine;
