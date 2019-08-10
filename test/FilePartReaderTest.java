@@ -44,4 +44,13 @@ class FilePartReaderTest {
         List expected = Arrays.asList("Lorem", "dolor");
         assertEquals(expected, fileWordAnalyzer.getWordsContainingSubstring("or"));
     }
+
+    @Test
+    public void testStringsWhichPalindromes() {
+        FilePartReader filePartReader = new FilePartReader();
+        filePartReader.setup("src/loremipsumshort.txt", 1, 3);
+        FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
+        List expected = Arrays.asList("Racecar");
+        assertEquals(expected, fileWordAnalyzer.getStringsWhichPalindromes());
+    }
 }

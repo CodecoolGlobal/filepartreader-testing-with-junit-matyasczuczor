@@ -37,17 +37,23 @@ public class FileWordAnalyzer {
         Collections.addAll(words, text.split(" "));
         ArrayList<String> palindromes = new ArrayList<>();
         for (String word : words) {
-            int i1 = 0;
-            int i2 = word.length() - 1;
-            while (i2 > i1) {
-                if (word.charAt(i1) != word.charAt(i2)) {
-                    break;
-                }
-                ++i1;
-                --i2;
+            if (isPalindrome(word)) {
+                palindromes.add(word);
             }
-            palindromes.add(word);
         }
         return palindromes;
+    }
+
+    private boolean isPalindrome(String word) {
+        int i1 = 0;
+        int i2 = word.length() - 1;
+        while (i2 > i1) {
+            if (word.toLowerCase().charAt(i1) != word.toLowerCase().charAt(i2)) {
+                return false;
+            }
+            ++i1;
+            --i2;
+        }
+        return true;
     }
 }
